@@ -24,12 +24,13 @@ import org.hibernate.Session;
  * @author Silvio
  */
 public class ClienteCadastro extends javax.swing.JFrame {
+    
+    private  ClienteDao clienteDao;
+    private Session sessao;
 
-    /**
-     * Creates new form Principal
-     */
     public ClienteCadastro() {
         initComponents();
+        clienteDao = new ClienteDaoImpl();
     }
 
     /**
@@ -164,6 +165,11 @@ public class ClienteCadastro extends javax.swing.JFrame {
 
         varEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         varEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        varEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                varEmailFocusLost(evt);
+            }
+        });
 
         varNumero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         varNumero.addActionListener(new java.awt.event.ActionListener() {
@@ -274,11 +280,10 @@ public class ClienteCadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(varRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(varNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(varRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10)
+                                .addComponent(varNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
@@ -360,8 +365,6 @@ public class ClienteCadastro extends javax.swing.JFrame {
         if (verificarEmail(email)) {
             JOptionPane.showMessageDialog(null, "Digite um e-mail correto");
             return false;
-        }else{
-            
         }
 
 //        Esse return tem que ser a última linha do método
@@ -410,6 +413,19 @@ public class ClienteCadastro extends javax.swing.JFrame {
     private void varNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varNumeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_varNumeroActionPerformed
+
+    private void varEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_varEmailFocusLost
+        String email = varEmail.getText().trim();
+        if(email.contains("@")){
+            sessao = HibernateUtil.abrirConexao();
+            boolean existe = clienteDao.verificarEmailCadastrado(email, sessao);
+            sessao.close();
+                   
+            if (existe){
+            JOptionPane.showMessageDialog(null, "Esse e-mail já está cadastrado!");
+            }
+        }
+    }//GEN-LAST:event_varEmailFocusLost
 
     /**
      * @param args the command line arguments

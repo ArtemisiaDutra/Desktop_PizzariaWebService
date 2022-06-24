@@ -54,7 +54,7 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
         Query<String> consulta = sessao.createQuery("select c.telefone from Cliente c where c.telefone  = :telCadastrado");
         consulta.setParameter("telCadastrado", telefoneCadastrado);
         String resultadoTel = consulta.uniqueResult();
-        return resultadoTel!= null;
+        return resultadoTel != null;
         
         
     }

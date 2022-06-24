@@ -25,8 +25,10 @@ public class Pessoa implements Serializable {
     
     @Column(nullable = false, unique = true)
     private String nome;
+    
     @Column(nullable = false)
     private String email;
+    
     @Column(nullable = false)
     private String telefone;
     
