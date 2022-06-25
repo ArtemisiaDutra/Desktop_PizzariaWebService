@@ -43,10 +43,10 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
 
     @Override
     public boolean verificarEmailCadastrado(String email, Session sessao) throws HibernateException {
-        Query<String> consulta = sessao.createQuery("select c.email from Cliente c where c.email = :email");
+        Query<Cliente> consulta = sessao.createQuery("from Cliente c where c.email = :email");
         consulta.setParameter("email", email);
-        String resultadoEmail = consulta.uniqueResult();
-        return resultadoEmail != null;
+        Cliente cliente = consulta.uniqueResult();
+        return cliente != null;
     }
 
     @Override

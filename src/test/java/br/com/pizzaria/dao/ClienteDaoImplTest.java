@@ -75,7 +75,6 @@ public class ClienteDaoImplTest {
     }
 //dificilmente exclui cliente
 //    @Test
-
     public void testExcluir() {
         System.out.println("excluir");
         buscarClienteBd();
@@ -107,7 +106,7 @@ public class ClienteDaoImplTest {
 
     }
 
-    @Test
+//    @Test
     public void testPesquisarPorTelefone() {
         System.out.println("pesquisarPorTelefone");
         buscarClienteBd();
@@ -144,7 +143,7 @@ public class ClienteDaoImplTest {
 
     }
 
-    @Test
+//    @Test
     public void testVerificarTelefoneCadastrado() {
         System.out.println("verificarTelefoneCadastrado");
         buscarClienteBd();
