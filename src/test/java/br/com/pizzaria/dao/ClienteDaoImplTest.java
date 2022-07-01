@@ -9,7 +9,6 @@ import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Endereco;
 import br.com.pizzaria.util.GeradorUtil;
 import static br.com.pizzaria.util.GeradorUtil.*;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
