@@ -37,13 +37,11 @@ public class ClienteDaoImplTest {
         System.out.println("salvar");
         cliente = new Cliente(gerarNome(), gerarEmail(), gerarTelefoneFixo(), true);
 
-        List<Endereco> enderecos = new ArrayList<>();// para o cliente ter ela 
-//        Endereco endereco = gerarEndereco();
-//        enderecos.add(endereco);
+        List<Endereco> enderecos = new ArrayList<>();
         enderecos.add(gerarEndereco());
         enderecos.add(gerarEndereco());
-        cliente.setEnderecos(enderecos);// está recebendo os dois endereços (pessoal e da empresa por exemplo)
-
+        cliente.setEnderecos(enderecos);
+        
         for (Endereco endereco : enderecos) {
             endereco.setPessoa(cliente);
         }
@@ -53,8 +51,7 @@ public class ClienteDaoImplTest {
         assertNotNull(cliente.getId());
 
     }
-
-//        @Test   
+//       @Test   
     public void testAlterar() {
         System.out.println("alterar");
         buscarClienteBd();
@@ -72,7 +69,7 @@ public class ClienteDaoImplTest {
         assertEquals(cliente.getTelefone(), cliAlt.getTelefone());
 
     }
-//dificilmente exclui cliente
+
 //    @Test
     public void testExcluir() {
         System.out.println("excluir");

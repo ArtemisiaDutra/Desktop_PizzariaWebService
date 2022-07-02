@@ -33,7 +33,9 @@ public class Pedido implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtPedido;
 
-    @ManyToOne(fetch = FetchType.EAGER)// cada registro no banco de dados tem que trazer a list
+//    @ManyToOne(fetch = FetchType.EAGER)
+    
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 

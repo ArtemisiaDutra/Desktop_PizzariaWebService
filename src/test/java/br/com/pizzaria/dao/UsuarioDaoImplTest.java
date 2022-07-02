@@ -26,11 +26,10 @@ public class UsuarioDaoImplTest {
         usuarioDao = new UsuarioDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() {
         System.out.println("salvar");
-        usuario = new Usuario(null, gerarNome(), gerarLogin(), gerarSenha(5));
-        
+        usuario = new Usuario(null, gerarNome(), gerarLogin(), gerarSenha(5));  
         sessao = HibernateUtil.abrirConexao();
         usuarioDao. salvarOuAlterar(usuario, sessao);
         sessao.close();
@@ -38,7 +37,7 @@ public class UsuarioDaoImplTest {
 
     }
     
-    @Test
+//    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
 

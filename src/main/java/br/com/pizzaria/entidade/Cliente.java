@@ -8,6 +8,7 @@ package br.com.pizzaria.entidade;
 import java.util.List;
 import javax.persistence.*;
 
+
 /**
  *
  * @author maria.sousa9

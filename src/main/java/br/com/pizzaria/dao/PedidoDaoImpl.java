@@ -17,20 +17,20 @@ import org.hibernate.query.Query;
  *
  * @author maria.sousa9
  */
-public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDao, Serializable{
+public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDao, Serializable {
 
     @Override
     public Pedido pesquisarPorId(Long id, Session sessao) throws HibernateException {
-        
+
         return sessao.find(Pedido.class, id);
     }
 
     @Override
     public List<Pedido> pesquisarPorNumero(int numero, Session sessao) throws HibernateException {
-        
+
         Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.numero = :numero");
         consulta.setParameter("numero", numero);
-        
+
         return consulta.getResultList();
     }
 
@@ -38,8 +38,8 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDa
     public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException {
         Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.valorTotal >= :valor");
         consulta.setParameter("valor", valor);
-        
+
         return consulta.getResultList();
     }
-    
+
 }

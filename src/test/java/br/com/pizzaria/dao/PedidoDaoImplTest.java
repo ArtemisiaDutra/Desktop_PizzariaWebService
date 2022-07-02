@@ -33,8 +33,6 @@ public class PedidoDaoImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         ClienteDaoImplTest cdit = new ClienteDaoImplTest();
-        
-        
         pedido = new Pedido(5, new BigDecimal(gerarNumero(3)), new Date());
         pedido.setCliente(cdit.buscarClienteBd());
         sessao = HibernateUtil.abrirConexao();
