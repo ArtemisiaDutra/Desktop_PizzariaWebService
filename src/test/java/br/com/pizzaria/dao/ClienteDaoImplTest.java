@@ -110,12 +110,10 @@ public class ClienteDaoImplTest {
         Cliente clienteTelefone = clienteDao.pesquisarPorTelefone(cliente.getTelefone(), sessao);
         sessao.close();;
         assertNotNull(clienteTelefone);
-//        assertTrue(clienteTelefone.getPedidos().isEmpty());
 
     }
 
     public Cliente buscarClienteBd() {
-//        String hql = "from Cliente c";//buscar da tabela cliente
         sessao = HibernateUtil.abrirConexao();
         Query<Cliente> consulta = sessao.createQuery("from Cliente c");
         List<Cliente> clientes = consulta.getResultList();

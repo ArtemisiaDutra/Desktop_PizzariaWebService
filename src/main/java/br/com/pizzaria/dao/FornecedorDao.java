@@ -15,12 +15,16 @@ import org.hibernate.Session;
  *
  * @author maria.sousa9
  */
+public interface FornecedorDao extends BaseDao<Fornecedor, Long> {
 
+    List<Fornecedor> pesquisarPorNome(String nome, Session sessao) throws HibernateException;
 
-public interface FornecedorDao extends BaseDao<Fornecedor, Long>{
+    Fornecedor pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException;
 
-    List<Fornecedor> pesquisarPorNome (String nome, Session sessao) throws HibernateException;
-    List<Fornecedor> pesquisarFornecedorEProdutoPorNome (String nome, Session sessao) throws HibernateException;
+    List<Fornecedor> pesquisarFornecedorEProdutoPorNome(String nome, Session sessao) throws HibernateException;
 
-    
+    boolean verificarEmailCadastrado(String email, Session sessao) throws HibernateException;
+
+    boolean verificarTelefoneCadastrado(String telefone, Session sessao) throws HibernateException;
+
 }

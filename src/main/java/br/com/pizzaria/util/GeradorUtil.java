@@ -37,6 +37,9 @@ public class GeradorUtil {
         return gerarNumero(2) + "." + gerarNumero(3) + "." + gerarNumero(3) + "/" + gerarNumero(4)
                 + "-" + gerarNumero(2);
     }
+    public static String gerarInscricaoEstadual() {
+        return gerarNumero(9);
+    }
 
     public static String gerarTelefoneFixo() {
         return "(48)3" + gerarNumero(3) + "-" + gerarNumero(4);

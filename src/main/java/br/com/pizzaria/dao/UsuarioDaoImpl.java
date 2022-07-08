@@ -6,8 +6,10 @@
 package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Usuario;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -15,9 +17,19 @@ import org.hibernate.Session;
  */
 public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements UsuarioDao{
 
+    private Session sessao;
+    
     @Override
     public Usuario pesquisarPorId(Long id, Session sessao) throws HibernateException {
         return sessao.get(Usuario.class, id);
+    }
+
+    @Override
+    public Usuario pesquisarLogin(String login, String senha, Session sessao) throws HibernateException {
+        Query<Usuario> consulta = sessao.createQuery("from Usuario u where u.login = :login and u.senha = :senha");
+        consulta.setParameter("login", login);
+        consulta.setParameter("senha", senha);
+        return consulta.uniqueResult();
     }
     
 }

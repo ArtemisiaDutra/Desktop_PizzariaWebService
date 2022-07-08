@@ -14,16 +14,13 @@ import org.hibernate.Session;
  *
  * @author maria.sousa9
  */
+public interface ClienteDao extends BaseDao<Cliente, Long> {
 
-// extends chama todos os métodos abstrados
-//sobtender os baseDao por herança tenho abstrato
-public interface ClienteDao extends BaseDao<Cliente, Long>{
-    // o método cliente retorna a lista
-    List<Cliente> pesquisarPorNome (String nome, Session sessao) throws HibernateException;
-//    Pesquisar cliente por telefone e trazer todos os seus pedidos.
+    List<Cliente> pesquisarPorNome(String nome, Session sessao) throws HibernateException;
+
     Cliente pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException;
-    
-    boolean verificarEmailCadastrado(String email, Session sessao)throws HibernateException;
-    
-    boolean verificarTelefoneCadastrado(String telefone, Session sessao)throws HibernateException;
+
+    boolean verificarEmailCadastrado(String email, Session sessao) throws HibernateException;
+
+    boolean verificarTelefoneCadastrado(String telefone, Session sessao) throws HibernateException;
 }

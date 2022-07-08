@@ -36,4 +36,27 @@ public class FornecedorDaoImpl extends BaseDaoImpl<Fornecedor, Long> implements 
         return consulta.list();
     }
 
+    @Override
+    public Fornecedor pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException {
+        Query<Fornecedor> consulta = sessao.createQuery("from Fornecedor f join fetch c.pedidos where f.telefone = :tel");
+        consulta.setParameter("tel", telefone);
+        return consulta.getSingleResult();
+    }
+
+    @Override
+    public boolean verificarEmailCadastrado(String email, Session sessao) throws HibernateException {
+        Query<Fornecedor> consulta = sessao.createQuery("from Fornecedor c where f.email = :email");
+        consulta.setParameter("email", email);
+        Fornecedor fornecedor = consulta.uniqueResult();
+        return fornecedor != null;
+    }
+
+    @Override
+    public boolean verificarTelefoneCadastrado(String telefoneCadastrado, Session sessao) throws HibernateException {
+        Query<String> consulta = sessao.createQuery("select c.telefone from Cliente c where c.telefone  = :telCadastrado");
+        consulta.setParameter("telCadastrado", telefoneCadastrado);
+        String resultadoTel = consulta.uniqueResult();
+        return resultadoTel != null;
+    }
+
 }

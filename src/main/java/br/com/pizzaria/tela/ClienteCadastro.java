@@ -29,6 +29,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
     private  ClienteDao clienteDao;
     private Session sessao;
     private Cliente cliente;
+    private Endereco endereco;
     
 
     public ClienteCadastro() {
@@ -92,7 +93,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         varObs = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Principal");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -252,25 +253,23 @@ public class ClienteCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(jLabel12))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(varComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(varCidade)
-                                        .addComponent(varBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(varEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel12))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(varComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(varEstado, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(varCidade, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(varBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -329,8 +328,8 @@ public class ClienteCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
@@ -346,7 +345,10 @@ public class ClienteCadastro extends javax.swing.JFrame {
             Cliente cliente1 = carregarCliente();
             if (cliente != null){
                 cliente1.setId(cliente.getId());
+                endereco = cliente1.getEnderecos().get(0);
                 
+            } else {
+                endereco = new Endereco();
             }
             try {
                 clienteDao.salvarOuAlterar(cliente1, sessao);            
@@ -366,7 +368,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
       
 
         List<Endereco> enderecos = new ArrayList<>();
-        Endereco endereco = new Endereco();
+        
         endereco.setLogradouro(varRua.getText().trim());
         endereco.setBairro(varBairro.getText().trim());
         endereco.setCep(varCep.getText().trim());

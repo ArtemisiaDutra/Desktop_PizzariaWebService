@@ -51,7 +51,7 @@ public class ClientePesquisado extends javax.swing.JFrame {
         btExcluir = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Principal");
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

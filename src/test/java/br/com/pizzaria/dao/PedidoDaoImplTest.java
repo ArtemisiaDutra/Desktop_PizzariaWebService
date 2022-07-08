@@ -29,7 +29,7 @@ public class PedidoDaoImplTest {
         pedidoDao = new PedidoDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() {
         System.out.println("salvar");
         ClienteDaoImplTest cdit = new ClienteDaoImplTest();

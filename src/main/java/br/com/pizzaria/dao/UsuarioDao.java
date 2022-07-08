@@ -6,11 +6,17 @@
 package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Usuario;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  *
  * @author maria.sousa9
  */
-public interface UsuarioDao extends BaseDao<Usuario, Long>{
-    
+public interface UsuarioDao extends BaseDao<Usuario, Long> {
+
+
+    Usuario pesquisarLogin(String login, String senha, Session sessao) throws HibernateException;
+
 }

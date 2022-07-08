@@ -5,19 +5,28 @@
  */
 package br.com.pizzaria.tela;
 
+import br.com.pizzaria.dao.HibernateUtil;
+import br.com.pizzaria.dao.UsuarioDaoImpl;
+import br.com.pizzaria.entidade.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 
 /**
  *
- * @author Silvio
+ * @author marcello.nunes
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    private UsuarioDaoImpl usuarioDaoImpl;
+    private Session sessao;
+
     public Login() {
         initComponents();
+        //usuDao = new UsuarioDaoImplTeste();
     }
 
     /**
@@ -29,24 +38,31 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        varUsuario = new javax.swing.JLabel();
-        varNome = new javax.swing.JTextField();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        titulo = new javax.swing.JLabel();
+        login = new javax.swing.JLabel();
+        senha = new javax.swing.JLabel();
+        varLogin = new javax.swing.JTextField();
+        varSenha = new javax.swing.JPasswordField();
         btLogar = new javax.swing.JButton();
-        varSenha = new javax.swing.JLabel();
-        varNome1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Logando no Sistema");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Logar no sitema");
+        titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("Logar");
+        titulo.setToolTipText("");
 
-        varUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        varUsuario.setText("Usuário");
+        login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        login.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        login.setText("Login:");
 
-        btLogar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        senha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        senha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        senha.setText("Senha:");
+
+        btLogar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btLogar.setText("Logar");
         btLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,48 +70,42 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        varSenha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        varSenha.setText("Senha");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(varUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(varNome))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(varSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(varNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(senha, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(varLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btLogar)
+                        .addGap(142, 142, 142))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(varUsuario)
-                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(login)
+                    .addComponent(varLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(varNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(varSenha))
-                .addGap(48, 48, 48)
-                .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addComponent(senha)
+                    .addComponent(varSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btLogar)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,8 +113,21 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        String nome = varNome.getText();
-        JOptionPane.showMessageDialog(null, nome);
+        String login = varLogin.getText();
+        String senha = String.valueOf(varSenha.getPassword());
+        Usuario usuario = null;
+        sessao = HibernateUtil.abrirConexao();
+        usuarioDaoImpl = new UsuarioDaoImpl();
+        usuario = usuarioDaoImpl.pesquisarLogin(login, senha, sessao);
+        sessao.close();
+
+        if (usuario != null) {
+            new Principal(usuario).setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Login ou Senha incorreta ");
+        }
+
     }//GEN-LAST:event_btLogarActionPerformed
 
     /**
@@ -134,8 +157,6 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -147,10 +168,11 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField varNome;
-    private javax.swing.JTextField varNome1;
-    private javax.swing.JLabel varSenha;
-    private javax.swing.JLabel varUsuario;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel login;
+    private javax.swing.JLabel senha;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JTextField varLogin;
+    private javax.swing.JPasswordField varSenha;
     // End of variables declaration//GEN-END:variables
 }
