@@ -29,12 +29,12 @@ public class FornecedorDaoImpl extends BaseDaoImpl<Fornecedor, Long> implements 
         return consulta.getResultList();
     }
 
-    @Override
-    public List<Fornecedor> pesquisarFornecedorEProdutoPorNome(String nome, Session sessao) throws HibernateException {
-        Query<Fornecedor> consulta = sessao.createQuery("from Fornecedor f join fetch f.produtos p where f.nome like :nomeFornecedor");// o f representa o fornecedor - f.produtos representa a associação com o fornecdor
-        consulta.setParameter("nomeFornecedor", "%" + nome + "%");
-        return consulta.list();
-    }
+//    @Override
+//    public List<Fornecedor> pesquisarFornecedorEProdutoPorNome(String nome, Session sessao) throws HibernateException {
+//        Query<Fornecedor> consulta = sessao.createQuery("from Fornecedor f join fetch f.produtos p where f.nome like :nomeFornecedor");// o f representa o fornecedor - f.produtos representa a associação com o fornecdor
+//        consulta.setParameter("nomeFornecedor", "%" + nome + "%");
+//        return consulta.list();
+//    }
 
     @Override
     public Fornecedor pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException {

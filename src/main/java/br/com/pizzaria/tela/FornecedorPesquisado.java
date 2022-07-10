@@ -7,8 +7,11 @@ package br.com.pizzaria.tela;
 
 import br.com.pizzaria.dao.ClienteDao;
 import br.com.pizzaria.dao.ClienteDaoImpl;
+import br.com.pizzaria.dao.FornecedorDao;
+import br.com.pizzaria.dao.FornecedorDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.entidade.Cliente;
+import br.com.pizzaria.entidade.Fornecedor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,17 +23,17 @@ import org.hibernate.Session;
  *
  * @author maria.sousa9
  */
-public class ClientePesquisado extends javax.swing.JFrame {
+public class FornecedorPesquisado extends javax.swing.JFrame {
 
-    private ClienteDao clienteDao;
+    private FornecedorDao fornecedorDao;
     private Session sessao;
-    private Cliente cliente;
-    private List<Cliente> clientes;
+    private Fornecedor fornecedor;
+    private List<Fornecedor> fornecedores;
     private DefaultTableModel tabelaModelo;
 
-    public ClientePesquisado() {
+    public FornecedorPesquisado() {
         initComponents();
-        clienteDao = new ClienteDaoImpl();
+        fornecedorDao = new FornecedorDaoImpl();
     }
 
     /**
@@ -144,14 +147,9 @@ public class ClientePesquisado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite uma palavra");
         } else {
             sessao = HibernateUtil.abrirConexao();
-            clientes = clienteDao.pesquisarPorNome(nome, sessao);
+            fornecedores = fornecedorDao.pesquisarPorNome(nome, sessao);
             sessao.close();
-            if (clientes.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nenhum valor encontrado");
-            } else {
-                popularTabela();
-            }
-
+            popularTabela();
         }
 
 
@@ -162,12 +160,12 @@ public class ClientePesquisado extends javax.swing.JFrame {
         if (numeroLinha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha");
         } else {
-            Cliente clienteSelecionado = clientes.get(numeroLinha);
+            Fornecedor forncedorSelecionado = fornecedores.get(numeroLinha);
             sessao = HibernateUtil.abrirConexao();
             try {
-                clienteDao.excluir(clienteSelecionado, sessao);
+                fornecedorDao.excluir(forncedorSelecionado, sessao);
                 varNome.setText("");
-                JOptionPane.showMessageDialog(null, clienteSelecionado.getNome() + " excluído com sucesso!");
+                JOptionPane.showMessageDialog(null, forncedorSelecionado.getNome() + " excluído com sucesso!");
                 tabelaModelo.setNumRows(0);
 
             } catch (HibernateException e) {
@@ -181,20 +179,20 @@ public class ClientePesquisado extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 //!!!!!!!!!!!!!!!!
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        int numeroLinha = varTabela.getSelectedRow();
-        Cliente clienteSelecionado = clientes.get(numeroLinha);
-        new ClienteCadastro(clienteSelecionado).setVisible(true);
+       int numeroLinha = varTabela.getSelectedRow();
+        Fornecedor fornecedorSelecionado = fornecedores.get(numeroLinha);
+        //new FornecedorCadastro(fornecedorSelecionado).setVisible(true);
         dispose();
-
-
+        
+        
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void popularTabela() {
         tabelaModelo = (DefaultTableModel) varTabela.getModel();
         tabelaModelo.setNumRows(0);
-        for (Cliente cliente1 : clientes) {
+        for (Fornecedor fornecedor1 : fornecedores) {
             tabelaModelo.addRow(new Object[]{
-                cliente1.getNome(), cliente1.getTelefone(), cliente1.getEmail()});
+                fornecedor1.getNome(), fornecedor1.getTelefone(), fornecedor1.getEmail()});
         }
 
     }
@@ -216,14 +214,18 @@ public class ClientePesquisado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +234,7 @@ public class ClientePesquisado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClientePesquisado().setVisible(true);
+                new FornecedorPesquisado().setVisible(true);
             }
         });
     }

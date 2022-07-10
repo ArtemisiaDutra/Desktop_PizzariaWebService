@@ -102,29 +102,16 @@ public class FornecedorDaoImplTest {
         sessao.close();
         assertTrue(!fornecedores.isEmpty());
     }
-
-//    @Test
-    public void testPesquisarFornecedorEProdutoPorNome() {
-        System.out.println("pesquisarFornecedorEProdutoPorNome");
-        buscarFornecedorBd();
-        sessao = HibernateUtil.abrirConexao();
-//        List<Fornecedor> fornecedores = fornecedorDao.listarFornecedor(fornecedor.getNome(), sessao);
-        sessao.close();
-//        mostrar(fornecedores);
-//        assertTrue(fornecedores.size() > 0);
-//        assertNotNull(fornecedores.get(0).getProdutos().get(0).getNome());// teste
-    }
-
-    
-//    validar
+   
+//validadar
 //  @Test    
     public void testPesquisarPorTelefone() {
         System.out.println("pesquisarPorTelefone");
         buscarFornecedorBd();
         sessao = HibernateUtil.abrirConexao();
-        Fornecedor clienteTelefone = fornecedorDao.pesquisarPorTelefone(fornecedor.getTelefone(), sessao);
+        Fornecedor fornecedorTelefone = fornecedorDao.pesquisarPorTelefone(fornecedor.getTelefone(), sessao);
         sessao.close();;
-        assertNotNull(clienteTelefone);
+        assertNotNull(fornecedorTelefone);
 
     }
 
@@ -162,4 +149,18 @@ public class FornecedorDaoImplTest {
         assertTrue(existeTel);
 
     }
+    
+////    @Test
+//    public void testPesquisarFornecedorEProdutoPorNome() {
+//        System.out.println("pesquisarFornecedorEProdutoPorNome");
+//        buscarFornecedorBd();
+//        sessao = HibernateUtil.abrirConexao();
+////        List<Fornecedor> fornecedores = fornecedorDao.listarFornecedor(fornecedor.getNome(), sessao);
+//        sessao.close();
+////        mostrar(fornecedores);
+////        assertTrue(fornecedores.size() > 0);
+////        assertNotNull(fornecedores.get(0).getProdutos().get(0).getNome());// teste
+//    }
+
+ 
 }

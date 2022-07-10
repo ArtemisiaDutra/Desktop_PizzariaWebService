@@ -5,6 +5,7 @@
  */
 package br.com.pizzaria.entidade;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -17,8 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "fornecedor")
 @PrimaryKeyJoinColumn(name = "id_pessoa")
-public class Fornecedor  extends Pessoa{
-    
+public class Fornecedor extends Pessoa {
+
     private String cnpj;
     private String inscricao_estadual;
 
@@ -46,7 +47,5 @@ public class Fornecedor  extends Pessoa{
     public void setInscricao_estadual(String inscricao_estadual) {
         this.inscricao_estadual = inscricao_estadual;
     }
-    
 
-    
 }

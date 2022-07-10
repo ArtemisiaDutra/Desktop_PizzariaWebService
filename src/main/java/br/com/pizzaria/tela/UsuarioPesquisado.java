@@ -8,7 +8,10 @@ package br.com.pizzaria.tela;
 import br.com.pizzaria.dao.ClienteDao;
 import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
+import br.com.pizzaria.dao.UsuarioDao;
+import br.com.pizzaria.dao.UsuarioDaoImpl;
 import br.com.pizzaria.entidade.Cliente;
+import br.com.pizzaria.entidade.Usuario;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,17 +23,17 @@ import org.hibernate.Session;
  *
  * @author maria.sousa9
  */
-public class ClientePesquisado extends javax.swing.JFrame {
+public class UsuarioPesquisado extends javax.swing.JFrame {
 
-    private ClienteDao clienteDao;
+    private UsuarioDao usuarioDao;
     private Session sessao;
-    private Cliente cliente;
-    private List<Cliente> clientes;
+    private Usuario usuario;
+    private List<Usuario> usuarios;
     private DefaultTableModel tabelaModelo;
 
-    public ClientePesquisado() {
+    public UsuarioPesquisado() {
         initComponents();
-        clienteDao = new ClienteDaoImpl();
+        usuarioDao = new UsuarioDaoImpl();
     }
 
     /**
@@ -56,7 +59,7 @@ public class ClientePesquisado extends javax.swing.JFrame {
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitulo.setText("Pesquisar Cliente");
+        lbTitulo.setText("Pesquisar Usuários");
 
         lbNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbNome.setText("Nome:");
@@ -74,7 +77,7 @@ public class ClientePesquisado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Email", "Telefone"
+                "Nome", "Login", "Senha"
             }
         ));
         jScrollPane1.setViewportView(varTabela);
@@ -144,9 +147,9 @@ public class ClientePesquisado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite uma palavra");
         } else {
             sessao = HibernateUtil.abrirConexao();
-            clientes = clienteDao.pesquisarPorNome(nome, sessao);
+            usuarios = usuarioDao.pesquisarPorNome(nome, sessao);
             sessao.close();
-            if (clientes.isEmpty()) {
+            if (usuarios.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Nenhum valor encontrado");
             } else {
                 popularTabela();
@@ -162,12 +165,12 @@ public class ClientePesquisado extends javax.swing.JFrame {
         if (numeroLinha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha");
         } else {
-            Cliente clienteSelecionado = clientes.get(numeroLinha);
+            Usuario usuarioSelecionado = usuarios.get(numeroLinha);
             sessao = HibernateUtil.abrirConexao();
             try {
-                clienteDao.excluir(clienteSelecionado, sessao);
+                usuarioDao.excluir(usuarioSelecionado, sessao);
                 varNome.setText("");
-                JOptionPane.showMessageDialog(null, clienteSelecionado.getNome() + " excluído com sucesso!");
+                JOptionPane.showMessageDialog(null, usuarioSelecionado.getNome() + " excluído com sucesso!");
                 tabelaModelo.setNumRows(0);
 
             } catch (HibernateException e) {
@@ -182,8 +185,8 @@ public class ClientePesquisado extends javax.swing.JFrame {
 //!!!!!!!!!!!!!!!!
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
         int numeroLinha = varTabela.getSelectedRow();
-        Cliente clienteSelecionado = clientes.get(numeroLinha);
-        new ClienteCadastro(clienteSelecionado).setVisible(true);
+        Usuario usuarioSelecionado = usuarios.get(numeroLinha);
+        new UsuarioCadastro(usuarioSelecionado).setVisible(true);
         dispose();
 
 
@@ -192,9 +195,9 @@ public class ClientePesquisado extends javax.swing.JFrame {
     private void popularTabela() {
         tabelaModelo = (DefaultTableModel) varTabela.getModel();
         tabelaModelo.setNumRows(0);
-        for (Cliente cliente1 : clientes) {
+        for (Usuario usuario1 : usuarios) {
             tabelaModelo.addRow(new Object[]{
-                cliente1.getNome(), cliente1.getTelefone(), cliente1.getEmail()});
+                usuario1.getNome(), usuario1.getLogin(), usuario1.getSenha()});
         }
 
     }
@@ -216,14 +219,18 @@ public class ClientePesquisado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientePesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioPesquisado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +239,7 @@ public class ClientePesquisado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClientePesquisado().setVisible(true);
+                new UsuarioPesquisado().setVisible(true);
             }
         });
     }

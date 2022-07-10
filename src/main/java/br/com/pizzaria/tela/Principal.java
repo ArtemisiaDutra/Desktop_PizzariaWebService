@@ -5,22 +5,21 @@
  */
 package br.com.pizzaria.tela;
 
-
 import br.com.pizzaria.entidade.Usuario;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author marcello.nunes
+ * @author maria.sousa9
  */
 public class Principal extends javax.swing.JFrame {
 
     private Usuario usuarioLogado;
-    
+
     public Principal() {
         initComponents();
     }
-    
+
     public Principal(Usuario usuario) {
         initComponents();
         usuarioLogado = usuario;
@@ -37,12 +36,16 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu3 = new javax.swing.JMenu();
         titulo = new javax.swing.JLabel();
+        titulo1 = new javax.swing.JLabel();
         menuBarra = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         clienteCadastro = new javax.swing.JMenuItem();
-        usuarioCadastrado = new javax.swing.JMenuItem();
+        UsuarioCadastro = new javax.swing.JMenuItem();
+        FornecedorCadastro = new javax.swing.JMenuItem();
         Pesquisa = new javax.swing.JMenu();
         clientePesquisado = new javax.swing.JMenuItem();
+        usuarioPesquisado = new javax.swing.JMenuItem();
+        fornecedorPesquisado = new javax.swing.JMenuItem();
         ajuda = new javax.swing.JMenu();
         sair = new javax.swing.JMenu();
 
@@ -50,9 +53,13 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("La Louca Pizza");
+        titulo.setText("© 2022 Todos os Direitos Reservados | Gupy Sistemas");
+
+        titulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo1.setText("La Louca Pizza");
 
         cadastro.setText("Cadastro");
 
@@ -64,13 +71,21 @@ public class Principal extends javax.swing.JFrame {
         });
         cadastro.add(clienteCadastro);
 
-        usuarioCadastrado.setText("Usuário");
-        usuarioCadastrado.addActionListener(new java.awt.event.ActionListener() {
+        UsuarioCadastro.setText("Usuário");
+        UsuarioCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioCadastradoActionPerformed(evt);
+                UsuarioCadastroActionPerformed(evt);
             }
         });
-        cadastro.add(usuarioCadastrado);
+        cadastro.add(UsuarioCadastro);
+
+        FornecedorCadastro.setText("Fornecedor");
+        FornecedorCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FornecedorCadastroActionPerformed(evt);
+            }
+        });
+        cadastro.add(FornecedorCadastro);
 
         menuBarra.add(cadastro);
 
@@ -84,9 +99,25 @@ public class Principal extends javax.swing.JFrame {
         });
         Pesquisa.add(clientePesquisado);
 
+        usuarioPesquisado.setText("Usuário");
+        usuarioPesquisado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioPesquisadoActionPerformed(evt);
+            }
+        });
+        Pesquisa.add(usuarioPesquisado);
+
+        fornecedorPesquisado.setText("Fornecedor");
+        fornecedorPesquisado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fornecedorPesquisadoActionPerformed(evt);
+            }
+        });
+        Pesquisa.add(fornecedorPesquisado);
+
         menuBarra.add(Pesquisa);
 
-        ajuda.setText("Pedido");
+        ajuda.setText("Pedidos");
         menuBarra.add(ajuda);
 
         sair.setText("Sair");
@@ -104,13 +135,19 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(175, Short.MAX_VALUE)
+                .addComponent(titulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -118,24 +155,36 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
-        int sair = JOptionPane.showConfirmDialog(null,
-                "Deseja realmente sair?");
+        int sair = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?");
+        dispose();
         if (sair == 0) {
             System.exit(DISPOSE_ON_CLOSE);
         }
     }//GEN-LAST:event_sairMouseClicked
 
-    private void usuarioCadastradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioCadastradoActionPerformed
-        
-    }//GEN-LAST:event_usuarioCadastradoActionPerformed
+    private void UsuarioCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCadastroActionPerformed
+        new UsuarioCadastro().setVisible(true);
+    }//GEN-LAST:event_UsuarioCadastroActionPerformed
 
     private void clienteCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteCadastroActionPerformed
-         new ClienteCadastro().setVisible(true);
+        new ClienteCadastro().setVisible(true);
     }//GEN-LAST:event_clienteCadastroActionPerformed
 
     private void clientePesquisadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientePesquisadoActionPerformed
-         new ClientePesquisado().setVisible(true);
+        new ClientePesquisado().setVisible(true);
     }//GEN-LAST:event_clientePesquisadoActionPerformed
+
+    private void usuarioPesquisadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioPesquisadoActionPerformed
+        new UsuarioPesquisado().setVisible(true);
+    }//GEN-LAST:event_usuarioPesquisadoActionPerformed
+
+    private void FornecedorCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FornecedorCadastroActionPerformed
+
+    private void fornecedorPesquisadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorPesquisadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fornecedorPesquisadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,15 +223,19 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem FornecedorCadastro;
     private javax.swing.JMenu Pesquisa;
+    private javax.swing.JMenuItem UsuarioCadastro;
     private javax.swing.JMenu ajuda;
     private javax.swing.JMenu cadastro;
     private javax.swing.JMenuItem clienteCadastro;
     private javax.swing.JMenuItem clientePesquisado;
+    private javax.swing.JMenuItem fornecedorPesquisado;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar menuBarra;
     private javax.swing.JMenu sair;
     private javax.swing.JLabel titulo;
-    private javax.swing.JMenuItem usuarioCadastrado;
+    private javax.swing.JLabel titulo1;
+    private javax.swing.JMenuItem usuarioPesquisado;
     // End of variables declaration//GEN-END:variables
 }
