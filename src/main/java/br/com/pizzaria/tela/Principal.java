@@ -42,16 +42,17 @@ public class Principal extends javax.swing.JFrame {
         clienteCadastro = new javax.swing.JMenuItem();
         UsuarioCadastro = new javax.swing.JMenuItem();
         FornecedorCadastro = new javax.swing.JMenuItem();
-        Pesquisa = new javax.swing.JMenu();
+        pesquisa = new javax.swing.JMenu();
         clientePesquisado = new javax.swing.JMenuItem();
         usuarioPesquisado = new javax.swing.JMenuItem();
         fornecedorPesquisado = new javax.swing.JMenuItem();
-        ajuda = new javax.swing.JMenu();
-        sair = new javax.swing.JMenu();
+        pedido = new javax.swing.JMenu();
+        varSair = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gupy Sistemas - Tela principal");
 
         titulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
 
         menuBarra.add(cadastro);
 
-        Pesquisa.setText("Pesquisa");
+        pesquisa.setText("Pesquisa");
 
         clientePesquisado.setText("Cliente");
         clientePesquisado.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +98,7 @@ public class Principal extends javax.swing.JFrame {
                 clientePesquisadoActionPerformed(evt);
             }
         });
-        Pesquisa.add(clientePesquisado);
+        pesquisa.add(clientePesquisado);
 
         usuarioPesquisado.setText("Usuário");
         usuarioPesquisado.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
                 usuarioPesquisadoActionPerformed(evt);
             }
         });
-        Pesquisa.add(usuarioPesquisado);
+        pesquisa.add(usuarioPesquisado);
 
         fornecedorPesquisado.setText("Fornecedor");
         fornecedorPesquisado.addActionListener(new java.awt.event.ActionListener() {
@@ -113,20 +114,20 @@ public class Principal extends javax.swing.JFrame {
                 fornecedorPesquisadoActionPerformed(evt);
             }
         });
-        Pesquisa.add(fornecedorPesquisado);
+        pesquisa.add(fornecedorPesquisado);
 
-        menuBarra.add(Pesquisa);
+        menuBarra.add(pesquisa);
 
-        ajuda.setText("Pedidos");
-        menuBarra.add(ajuda);
+        pedido.setText("Pedido");
+        menuBarra.add(pedido);
 
-        sair.setText("Sair");
-        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+        varSair.setText("Sair");
+        varSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sairMouseClicked(evt);
+                varSairMouseClicked(evt);
             }
         });
-        menuBarra.add(sair);
+        menuBarra.add(varSair);
 
         setJMenuBar(menuBarra);
 
@@ -154,13 +155,13 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+    private void varSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_varSairMouseClicked
         int sair = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?");
         dispose();
         if (sair == 0) {
             System.exit(DISPOSE_ON_CLOSE);
         }
-    }//GEN-LAST:event_sairMouseClicked
+    }//GEN-LAST:event_varSairMouseClicked
 
     private void UsuarioCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioCadastroActionPerformed
         new UsuarioCadastro().setVisible(true);
@@ -179,11 +180,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_usuarioPesquisadoActionPerformed
 
     private void FornecedorCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorCadastroActionPerformed
-        // TODO add your handling code here:
+        new FornecedorCadastro().setVisible(true);
     }//GEN-LAST:event_FornecedorCadastroActionPerformed
 
     private void fornecedorPesquisadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorPesquisadoActionPerformed
-        // TODO add your handling code here:
+        new FornecedorPesquisado().setVisible(true);
     }//GEN-LAST:event_fornecedorPesquisadoActionPerformed
 
     /**
@@ -224,18 +225,18 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem FornecedorCadastro;
-    private javax.swing.JMenu Pesquisa;
     private javax.swing.JMenuItem UsuarioCadastro;
-    private javax.swing.JMenu ajuda;
     private javax.swing.JMenu cadastro;
     private javax.swing.JMenuItem clienteCadastro;
     private javax.swing.JMenuItem clientePesquisado;
     private javax.swing.JMenuItem fornecedorPesquisado;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar menuBarra;
-    private javax.swing.JMenu sair;
+    private javax.swing.JMenu pedido;
+    private javax.swing.JMenu pesquisa;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo1;
     private javax.swing.JMenuItem usuarioPesquisado;
+    private javax.swing.JMenu varSair;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,25 +42,33 @@ public class Login extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         login = new javax.swing.JLabel();
         senha = new javax.swing.JLabel();
-        varLogin = new javax.swing.JTextField();
+        varLoginEmail = new javax.swing.JTextField();
         varSenha = new javax.swing.JPasswordField();
         btLogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Logando no Sistema");
+        setTitle("Gupy Sistemas - Tela de Login");
+        setResizable(false);
 
         titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Logar no Sistema");
         titulo.setToolTipText("");
+        titulo.setAutoscrolls(true);
 
         login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         login.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        login.setText("Login:");
+        login.setText("E-mail:");
 
         senha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         senha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         senha.setText("Senha:");
+
+        varSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varSenhaActionPerformed(evt);
+            }
+        });
 
         btLogar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btLogar.setText("Logar");
@@ -84,7 +92,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(varLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(varSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btLogar)
@@ -98,7 +106,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login)
-                    .addComponent(varLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(varLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senha)
@@ -113,23 +121,28 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        String login = varLogin.getText();
+        String login = varLoginEmail.getText();
         String senha = String.valueOf(varSenha.getPassword());
         Usuario usuario = null;
         sessao = HibernateUtil.abrirConexao();
         usuarioDaoImpl = new UsuarioDaoImpl();
         usuario = usuarioDaoImpl.pesquisarLogin(login, senha, sessao);
-        
+
         sessao.close();
 
         if (usuario != null) {
             new Principal(usuario).setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Login ou Senha incorreta ");
+            JOptionPane.showMessageDialog(null, "E-mail ou Senha incorreta ");
         }
+        JOptionPane.showMessageDialog(null, "Bem vindo ao Gupy Sistemas");
 
     }//GEN-LAST:event_btLogarActionPerformed
+
+    private void varSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_varSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +186,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel login;
     private javax.swing.JLabel senha;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField varLogin;
+    private javax.swing.JTextField varLoginEmail;
     private javax.swing.JPasswordField varSenha;
     // End of variables declaration//GEN-END:variables
 }

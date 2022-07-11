@@ -21,8 +21,6 @@ public interface FornecedorDao extends BaseDao<Fornecedor, Long> {
 
     Fornecedor pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException;
 
-//    List<Fornecedor> pesquisarFornecedorEProdutoPorNome(String nome, Session sessao) throws HibernateException;
-
     boolean verificarEmailCadastrado(String email, Session sessao) throws HibernateException;
 
     boolean verificarTelefoneCadastrado(String telefone, Session sessao) throws HibernateException;

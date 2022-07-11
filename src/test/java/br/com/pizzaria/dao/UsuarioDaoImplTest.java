@@ -26,7 +26,7 @@ public class UsuarioDaoImplTest {
         usuarioDao = new UsuarioDaoImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         System.out.println("salvar");
         usuario = new Usuario(null, gerarNome(), gerarLogin(), gerarSenha(5));  

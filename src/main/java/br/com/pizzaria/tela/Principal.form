@@ -44,7 +44,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="Pesquisa">
+        <Menu class="javax.swing.JMenu" name="pesquisa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisa"/>
           </Properties>
@@ -75,17 +75,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="ajuda">
+        <Menu class="javax.swing.JMenu" name="pedido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pedidos"/>
+            <Property name="text" type="java.lang.String" value="Pedido"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="sair">
+        <Menu class="javax.swing.JMenu" name="varSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sairMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="varSairMouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>
@@ -93,6 +93,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Gupy Sistemas - Tela principal"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBarra"/>

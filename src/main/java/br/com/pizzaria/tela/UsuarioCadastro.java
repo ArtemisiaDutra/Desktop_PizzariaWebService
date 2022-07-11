@@ -65,7 +65,7 @@ public class UsuarioCadastro extends javax.swing.JFrame {
         varSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Gupy Sistemas - Tela Cadastro de Usuário");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

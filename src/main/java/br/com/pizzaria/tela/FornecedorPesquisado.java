@@ -5,12 +5,9 @@
  */
 package br.com.pizzaria.tela;
 
-import br.com.pizzaria.dao.ClienteDao;
-import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.FornecedorDao;
 import br.com.pizzaria.dao.FornecedorDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
-import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Fornecedor;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -48,27 +45,27 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
         lbTitulo = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         varTabela = new javax.swing.JTable();
         btExcluir = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Gupy Sistemas - Tela Pesquisa de Fornecedor");
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitulo.setText("Pesquisar Cliente");
+        lbTitulo.setText("Pesquisar Fornecedor");
 
         lbNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbNome.setText("Nome:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        btPesquisar.setText("Pesquisar");
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
 
@@ -110,7 +107,7 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(varNome)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
@@ -127,7 +124,7 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
@@ -141,19 +138,21 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         String nome = varNome.getText().trim();
         if (nome.length() < 3) {
-            JOptionPane.showMessageDialog(null, "Digite uma palavra");
+            JOptionPane.showMessageDialog(null, "Digite um nome com no mínimo três letras");
         } else {
             sessao = HibernateUtil.abrirConexao();
             fornecedores = fornecedorDao.pesquisarPorNome(nome, sessao);
             sessao.close();
-            popularTabela();
+            if (fornecedores.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nenhum valor encontrado");
+            } else {
+                popularTabela();
+            }
         }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         int numeroLinha = varTabela.getSelectedRow();
@@ -177,13 +176,27 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btExcluirActionPerformed
-//!!!!!!!!!!!!!!!!
+
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
        int numeroLinha = varTabela.getSelectedRow();
-        Fornecedor fornecedorSelecionado = fornecedores.get(numeroLinha);
-        //new FornecedorCadastro(fornecedorSelecionado).setVisible(true);
-        dispose();
-        
+        if (numeroLinha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha");
+        } else {
+            Fornecedor fornecedorSelecionado = fornecedores.get(numeroLinha);
+            new FornecedorCadastro(fornecedorSelecionado).setVisible(true);
+            sessao = HibernateUtil.abrirConexao();
+            try {
+                varNome.setText("");
+                dispose();
+                tabelaModelo.setNumRows(0);
+
+            } catch (HibernateException e) {
+                System.out.println("Erro ao alterar " + e.getMessage());
+            } finally {
+                sessao.close();
+            }
+
+        }
         
     }//GEN-LAST:event_btAlterarActionPerformed
 
@@ -242,7 +255,7 @@ public class FornecedorPesquisado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btExcluir;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbTitulo;

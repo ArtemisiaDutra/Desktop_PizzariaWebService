@@ -51,7 +51,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         endereco = cliente.getEnderecos().get(0);
         varCep.setText(endereco.getCep());
         varRua.setText(endereco.getLogradouro());
-        varBairro.setText(endereco.getBairro());
+        varNumero.setText(endereco.getNumero());
         varBairro.setText(endereco.getBairro());
         varCidade.setText(endereco.getCidade());
         varEstado.setText(endereco.getEstado());
@@ -92,7 +92,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         varObs = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Principal");
+        setTitle("Gupy Sistemas - Tela Cadastro de Cliente");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -351,7 +351,6 @@ public class ClienteCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Erro ao salvar!!");
             }
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!!");
-
         }
 
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -368,11 +367,11 @@ public class ClienteCadastro extends javax.swing.JFrame {
         }
 
         endereco.setLogradouro(varRua.getText().trim());
+        endereco.setNumero(varNumero.getText().trim());
         endereco.setBairro(varBairro.getText().trim());
         endereco.setCep(varCep.getText().trim());
         endereco.setCidade(varCidade.getText().trim());
         endereco.setEstado(varEstado.getText().trim());
-        endereco.setNumero(varNumero.getText().trim());
         endereco.setComplemento(varComplemento.getText().trim());
         endereco.setObservacao(varObs.getText().trim());
 

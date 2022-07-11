@@ -21,13 +21,11 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
 
     @Override
     public Cliente pesquisarPorId(Long id, Session sessao) throws HibernateException {
-
         return sessao.find(Cliente.class, id);
     }
 
     @Override
     public List<Cliente> pesquisarPorNome(String nome, Session sessao) throws HibernateException {
-        //quando quizer pesquisare por varchar- like é parte de lago
         Query<Cliente> consulta = sessao.createQuery("select distinct(c) from Cliente c join fetch c.enderecos where c.nome like :nome");//opcional: join fech c.enderecos | puxa a lista de endereço e nome nos métodos pode demoar
         consulta.setParameter("nome", "%" + nome + "%");
         return consulta.getResultList();

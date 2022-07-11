@@ -7,7 +7,6 @@ package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Endereco;
 import br.com.pizzaria.entidade.Fornecedor;
-import br.com.pizzaria.util.GeradorUtil;
 import static br.com.pizzaria.util.GeradorUtil.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +28,12 @@ public class FornecedorDaoImplTest {
     public FornecedorDaoImplTest() {
 
         fornecedorDao = new FornecedorDaoImpl();
-
     }
 
-//  @Test
+  @Test
     public void testSalvar() {
         System.out.println("salvar");
-        fornecedor = new Fornecedor(GeradorUtil.gerarCnpj(), GeradorUtil.gerarInscricaoEstadual(), gerarNome(), gerarEmail(), gerarTelefoneFixo());
+        fornecedor = new Fornecedor(gerarCnpj(), gerarInscricaoEstadual(), gerarNome(), gerarEmail(), gerarTelefoneFixo());
 
         List<Endereco> enderecos = new ArrayList<>();
         enderecos.add(gerarEndereco());
@@ -58,6 +56,8 @@ public class FornecedorDaoImplTest {
         buscarFornecedorBd();
         fornecedor.setNome(gerarNome());
         fornecedor.setEmail(gerarEmail());
+        fornecedor.setCnpj(gerarCnpj());
+        fornecedor.setInscricaoEstadual(gerarInscricaoEstadual());
         sessao = HibernateUtil.abrirConexao();
         fornecedorDao.salvarOuAlterar(fornecedor, sessao);
         sessao.close();
@@ -68,9 +68,11 @@ public class FornecedorDaoImplTest {
         assertEquals(fornecedor.getNome(), fornAlt.getNome());
         assertEquals(fornecedor.getEmail(), fornAlt.getEmail());
         assertEquals(fornecedor.getTelefone(), fornAlt.getTelefone());
+        assertEquals(fornecedor.getCnpj(), fornAlt.getCnpj());
+        assertEquals(fornecedor.getInscricaoEstadual(), fornAlt.getInscricaoEstadual());
 
     }
-    
+
 //    @Test
     public void testExcluir() {
         System.out.println("excluir");
@@ -102,8 +104,8 @@ public class FornecedorDaoImplTest {
         sessao.close();
         assertTrue(!fornecedores.isEmpty());
     }
-   
-//validadar
+
+
 //  @Test    
     public void testPesquisarPorTelefone() {
         System.out.println("pesquisarPorTelefone");
@@ -127,7 +129,7 @@ public class FornecedorDaoImplTest {
         }
         return fornecedor;
     }
- //  validar
+
 //  @Test
     public void testVerificarEmailCadastrado() {
         System.out.println("verificarEmailCadastrado");
@@ -138,7 +140,7 @@ public class FornecedorDaoImplTest {
         assertTrue(existeEmail);
 
     }
- //    validar
+
 //     @Test
     public void testVerificarTelefoneCadastrado() {
         System.out.println("verificarTelefoneCadastrado");
@@ -149,18 +151,5 @@ public class FornecedorDaoImplTest {
         assertTrue(existeTel);
 
     }
-    
-////    @Test
-//    public void testPesquisarFornecedorEProdutoPorNome() {
-//        System.out.println("pesquisarFornecedorEProdutoPorNome");
-//        buscarFornecedorBd();
-//        sessao = HibernateUtil.abrirConexao();
-////        List<Fornecedor> fornecedores = fornecedorDao.listarFornecedor(fornecedor.getNome(), sessao);
-//        sessao.close();
-////        mostrar(fornecedores);
-////        assertTrue(fornecedores.size() > 0);
-////        assertNotNull(fornecedores.get(0).getProdutos().get(0).getNome());// teste
-//    }
 
- 
 }

@@ -5,9 +5,7 @@
  */
 package br.com.pizzaria.entidade;
 
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -21,15 +19,15 @@ import javax.persistence.Table;
 public class Fornecedor extends Pessoa {
 
     private String cnpj;
-    private String inscricao_estadual;
+    private String inscricaoEstadual;
 
     public Fornecedor() {
     }
 
-    public Fornecedor(String cnpj, String inscricao_estadual, String nome, String email, String telefone) {
+    public Fornecedor(String cnpj, String inscricaoEstadual, String nome, String email, String telefone) {
         super(nome, email, telefone);
         this.cnpj = cnpj;
-        this.inscricao_estadual = inscricao_estadual;
+        this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public String getCnpj() {
@@ -40,12 +38,13 @@ public class Fornecedor extends Pessoa {
         this.cnpj = cnpj;
     }
 
-    public String getInscricao_estadual() {
-        return inscricao_estadual;
+    public String getInscricaoEstadual() {
+        return inscricaoEstadual;
     }
 
-    public void setInscricao_estadual(String inscricao_estadual) {
-        this.inscricao_estadual = inscricao_estadual;
+    public void setInscricaoEstadual(String inscricaoEstadual) {
+        this.inscricaoEstadual = inscricaoEstadual;
     }
+
 
 }
