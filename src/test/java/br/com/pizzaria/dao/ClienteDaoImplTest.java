@@ -108,7 +108,7 @@ public class ClienteDaoImplTest {
         buscarClienteBd();
         sessao = HibernateUtil.abrirConexao();
         Cliente clienteTelefone = clienteDao.pesquisarPorTelefone(cliente.getTelefone(), sessao);
-        sessao.close();;
+        sessao.close();
         assertNotNull(clienteTelefone);
 
     }

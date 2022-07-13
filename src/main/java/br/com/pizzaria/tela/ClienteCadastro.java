@@ -406,7 +406,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         return true;
     }
 
-// validadar
+
     private boolean verificarCampoMaior2(String campo) {
 
         return campo.length() < 3;

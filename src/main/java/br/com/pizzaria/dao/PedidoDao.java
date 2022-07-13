@@ -15,10 +15,10 @@ import org.hibernate.Session;
  *
  * @author maria.sousa9
  */
-public interface PedidoDao extends BaseDao<Pedido, Long>{
-    
+public interface PedidoDao extends BaseDao<Pedido, Long> {
+
     List<Pedido> pesquisarPorNumero(int numero, Session sessao) throws HibernateException;
-    
+
     List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException;
-    
+
 }

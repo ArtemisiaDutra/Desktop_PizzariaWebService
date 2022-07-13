@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,11 +21,11 @@ import static org.junit.Assert.*;
  * @author maria.sousa9
  */
 public class PedidoDaoImplTest {
-    
+
     private Pedido pedido;
     private PedidoDao pedidoDao;
     private Session sessao;
-    
+
     public PedidoDaoImplTest() {
         pedidoDao = new PedidoDaoImpl();
     }
@@ -41,21 +42,63 @@ public class PedidoDaoImplTest {
         assertNotNull(pedido.getId());
 
     }
+
 //    @Test
+    public void testExcluir() {
+        System.out.println("excluir");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
+        pedidoDao.excluir(pedido, sessao);
+
+        Pedido pesPedExc = pedidoDao.pesquisarPorId(pedido.getId(), sessao);
+        sessao.close();
+        assertNull(pesPedExc);
+    }
+//    @Test
+
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
+        Pedido pesqPedido = pedidoDao.pesquisarPorId(pedido.getId(), sessao);
 
     }
 
 //    @Test
     public void testPesquisarPorNumero() {
         System.out.println("pesquisarPorNumero");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
 
+        List<Pedido> pedidos = pedidoDao.pesquisarPorNumero(pedido.getNumero(), sessao);
+        sessao.close();
+        assertTrue(!pedidos.isEmpty());
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorValorMaiorIgual() {
         System.out.println("pesquisarPorValorMaiorIgual");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
+
+        List<Pedido> pedidos = pedidoDao.pesquisarPorValorMaiorIgual(pedido.getValorTotal(), sessao);
+        sessao.close();
+        assertTrue(!pedidos.isEmpty());
     }
-    
+
+
+    public Pedido buscarPedidoBd() {
+        sessao = HibernateUtil.abrirConexao();
+        Query<Pedido> consulta = sessao.createQuery("from Pedido  p");
+        List<Pedido> pedidos = consulta.getResultList();
+        sessao.close();
+        if (pedidos.isEmpty()) {
+            testSalvar();
+        } else {
+            pedido = pedidos.get(0);
+        }
+        return pedido;
+    }
+
+ 
 }

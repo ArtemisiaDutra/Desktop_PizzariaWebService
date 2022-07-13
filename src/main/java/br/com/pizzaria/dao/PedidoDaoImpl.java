@@ -34,6 +34,13 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDa
         return consulta.getResultList();
     }
 
+//    @Override
+//    public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException {
+//        Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.valorTotal >= :valor");
+//        consulta.setParameter("valor", valor);
+//
+//        return consulta.getResultList();
+//    }
     @Override
     public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException {
         Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.valorTotal >= :valor");

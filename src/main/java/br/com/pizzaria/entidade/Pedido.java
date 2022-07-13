@@ -27,14 +27,12 @@ public class Pedido implements Serializable {
     private int numero;
 
     @Column(nullable = false)
-    private BigDecimal ValorTotal;
+    private BigDecimal valorTotal;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtPedido;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-    
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
@@ -42,9 +40,9 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(int numero, BigDecimal ValorTotal, Date dtPedido) {
+    public Pedido(int numero, BigDecimal valorTotal, Date dtPedido) {
         this.numero = numero;
-        this.ValorTotal = ValorTotal;
+        this.valorTotal = valorTotal;
         this.dtPedido = dtPedido;
     }
 
@@ -65,11 +63,11 @@ public class Pedido implements Serializable {
     }
 
     public BigDecimal getValorTotal() {
-        return ValorTotal;
+        return valorTotal;
     }
 
     public void setValorTotal(BigDecimal ValorTotal) {
-        this.ValorTotal = ValorTotal;
+        this.valorTotal = ValorTotal;
     }
 
     public Date getDtPedido() {
