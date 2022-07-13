@@ -37,18 +37,16 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         titulo = new javax.swing.JLabel();
         pizza = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pesquisar = new javax.swing.JLabel();
+        pesCliente = new javax.swing.JLabel();
+        pesFornecedor = new javax.swing.JLabel();
+        pesUsuario = new javax.swing.JLabel();
         cadastrar = new javax.swing.JLabel();
         cadCliente1 = new javax.swing.JLabel();
         cadFornecedor1 = new javax.swing.JLabel();
         cadFornecedor = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        pesquisar = new javax.swing.JLabel();
-        pesCliente = new javax.swing.JLabel();
-        pesFornecedor = new javax.swing.JLabel();
-        pesUsuario = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         menuBarra = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         clienteCadastro = new javax.swing.JMenuItem();
@@ -73,7 +71,34 @@ public class Principal extends javax.swing.JFrame {
 
         pizza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pizza.jpg"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesquisar.png"))); // NOI18N
+
+        pesCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesCliente.png"))); // NOI18N
+        pesCliente.setToolTipText("Abrir Pesquisa de Cliente");
+        pesCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pesCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesClienteMouseClicked(evt);
+            }
+        });
+
+        pesFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesFornecedor.png"))); // NOI18N
+        pesFornecedor.setToolTipText("Abrir Pesquisa de Fornecedor");
+        pesFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pesFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesFornecedorMouseClicked(evt);
+            }
+        });
+
+        pesUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesUsuario.png"))); // NOI18N
+        pesUsuario.setToolTipText("Abrir Pesquisa de Usuário");
+        pesUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pesUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesUsuarioMouseClicked(evt);
+            }
+        });
 
         cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/cadastrar.png"))); // NOI18N
 
@@ -104,113 +129,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Cadastro");
+        jLabel1.setText("Cadastros");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(cadastrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cadCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(194, 194, 194)
-                .addComponent(cadFornecedor1)
-                .addGap(172, 172, 172)
-                .addComponent(cadFornecedor)
-                .addGap(157, 157, 157))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(cadFornecedor1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadCliente1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadFornecedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesquisar.png"))); // NOI18N
-
-        pesCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesCliente.png"))); // NOI18N
-        pesCliente.setToolTipText("Abrir Pesquisar de Cliente");
-        pesCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pesCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pesClienteMouseClicked(evt);
-            }
-        });
-
-        pesFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesFornecedor.png"))); // NOI18N
-        pesFornecedor.setToolTipText("Abrir Pesquisar de Fornecedor");
-        pesFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pesFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pesFornecedorMouseClicked(evt);
-            }
-        });
-
-        pesUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/imagens/pesUsuario.png"))); // NOI18N
-        pesUsuario.setToolTipText("Abrir Pesquisar de Usuário");
-        pesUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pesUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pesUsuarioMouseClicked(evt);
-            }
-        });
-
-        jLabel2.setText("Pesquisa");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(269, 269, 269)
-                        .addComponent(pesCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191)
-                        .addComponent(pesFornecedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pesUsuario)
-                        .addGap(164, 164, 164))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pesFornecedor)
-                    .addComponent(pesCliente))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel3.setText("Pesquisas");
 
         cadastro.setText("Cadastro");
         cadastro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -278,6 +199,11 @@ public class Principal extends javax.swing.JFrame {
 
         pedido.setText("Pedido");
         pedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedidoActionPerformed(evt);
+            }
+        });
         menuBarra.add(pedido);
 
         varSair.setText("Sair");
@@ -296,28 +222,60 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastrar)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(272, 272, 272)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cadCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(192, 192, 192)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cadFornecedor1)
+                            .addComponent(pesFornecedor))
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cadFornecedor)
+                            .addComponent(pesUsuario))
+                        .addGap(0, 167, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pizza, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pizza, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cadCliente1)
+                    .addComponent(cadFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadFornecedor1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(pesUsuario)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pesCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pesFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pizza, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -380,6 +338,10 @@ public class Principal extends javax.swing.JFrame {
         new UsuarioPesquisado().setVisible(true);
     }//GEN-LAST:event_pesUsuarioMouseClicked
 
+    private void pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidoActionPerformed
+       
+    }//GEN-LAST:event_pedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,10 +390,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem clientePesquisado;
     private javax.swing.JMenuItem fornecedorPesquisado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuBar menuBarra;
     private javax.swing.JMenu pedido;
     private javax.swing.JLabel pesCliente;

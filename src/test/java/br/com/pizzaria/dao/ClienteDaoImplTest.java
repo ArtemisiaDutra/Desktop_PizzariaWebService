@@ -7,7 +7,6 @@ package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Endereco;
-import br.com.pizzaria.util.GeradorUtil;
 import static br.com.pizzaria.util.GeradorUtil.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -56,6 +56,7 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         varCidade.setText(endereco.getCidade());
         varEstado.setText(endereco.getEstado());
         varObs.setText(endereco.getObservacao());
+        varComplemento.setText(endereco.getComplemento());
 
     }
 
@@ -423,13 +424,7 @@ public class FornecedorCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite um cnpj correto");
             return false;
         }
-        
-//        String inscricaoEstadual = varInscricaoEstadual.getText().trim();
-//        if (verificarInscricaoEstadual(inscricaoEstadual)){
-//            JOptionPane.showMessageDialog(null,"Digite uma inscrição Estadual correta");
-//                   return false;
-//        }
-                
+
         String email = varEmail.getText().trim();
         if (verificarEmail(email)) {
             JOptionPane.showMessageDialog(null, "Digite um e-mail correto");
@@ -460,9 +455,11 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     private boolean verificarTelefone(String telefone) {
         return telefone.length() == 10;
     }
+
     private boolean verificarCnpj(String cnpj) {
         return cnpj.length() == 14;
     }
+
     private boolean verificarInscricaoEstadual(String inscricaoEstadual) {
         return inscricaoEstadual.length() == 10;
     }

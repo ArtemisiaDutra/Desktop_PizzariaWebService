@@ -5,7 +5,6 @@
  */
 package br.com.pizzaria.dao;
 
-import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Fornecedor;
 import java.util.List;
 import org.hibernate.HibernateException;

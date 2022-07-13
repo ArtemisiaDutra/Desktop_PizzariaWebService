@@ -5,20 +5,14 @@
  */
 package br.com.pizzaria.tela;
 
-import br.com.pizzaria.dao.ClienteDao;
-import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.dao.UsuarioDao;
 import br.com.pizzaria.dao.UsuarioDaoImpl;
-import br.com.pizzaria.entidade.Cliente;
-import br.com.pizzaria.entidade.Endereco;
 import br.com.pizzaria.entidade.EnderecoDTO;
 import br.com.pizzaria.entidade.Usuario;
-import br.com.pizzaria.webservice.CepRest;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -235,7 +229,7 @@ public class UsuarioCadastro extends javax.swing.JFrame {
     }
 
     private void varLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_varLoginFocusLost
-//        String login = varLogin.getText().trim();
+//     String login = varLogin.getText().trim();
 //        if (login.contains("@")) {
 //            sessao = HibernateUtil.abrirConexao();
 //            Usuario existe = usuarioDao.pesquisarLogin(login, sessao);

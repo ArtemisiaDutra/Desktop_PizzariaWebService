@@ -6,7 +6,6 @@
 package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Pedido;
-import br.com.pizzaria.util.GeradorUtil;
 import static br.com.pizzaria.util.GeradorUtil.gerarNumero;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -75,7 +74,7 @@ public class PedidoDaoImplTest {
         assertTrue(!pedidos.isEmpty());
     }
 
-    @Test
+//    @Test
     public void testPesquisarPorValorMaiorIgual() {
         System.out.println("pesquisarPorValorMaiorIgual");
         buscarPedidoBd();
@@ -98,6 +97,26 @@ public class PedidoDaoImplTest {
             pedido = pedidos.get(0);
         }
         return pedido;
+    }
+
+//    @Test
+    public void testPesquisarPorTelefone() {
+       System.out.println("pesquisarPorTelefone");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
+//        Pedido pedidoTelefone = pedidoDao.pesquisarPorTelefone(pedido.getTelefone, sessao);
+        sessao.close();
+//        assertNotNull(pedidoTelefone);
+    }
+
+//    @Test
+    public void testVerificarTelefoneCadastrado() {
+        System.out.println("verificarTelefoneCadastrado");
+        buscarPedidoBd();
+        sessao = HibernateUtil.abrirConexao();
+//        boolean existeTel = pedidoDao.verificarTelefoneCadastrado(pedido.getTelefone(), sessao);
+        sessao.close();
+//        assertTrue(existeTel);
     }
 
  

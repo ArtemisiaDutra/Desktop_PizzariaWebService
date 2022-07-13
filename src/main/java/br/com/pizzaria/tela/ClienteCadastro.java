@@ -57,6 +57,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         varEstado.setText(endereco.getEstado());
         varObs.setText(endereco.getObservacao());
         varNumero.setText(endereco.getNumero());
+        varComplemento.setText(endereco.getComplemento());
 
     }
 

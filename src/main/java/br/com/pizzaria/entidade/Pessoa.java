@@ -32,9 +32,7 @@ public class Pessoa implements Serializable {
     @Column(nullable = false)
     private String telefone;
     
-    // uma pessoa pode ter mais de um endereço
-    @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL)// a classe que tem mappedby não ficou com achave 
-    //Associação com endereço - list
+    @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
     
     public Pessoa() {

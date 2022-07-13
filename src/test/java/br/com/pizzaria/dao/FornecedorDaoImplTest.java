@@ -30,7 +30,7 @@ public class FornecedorDaoImplTest {
         fornecedorDao = new FornecedorDaoImpl();
     }
 
-  @Test
+//  @Test
     public void testSalvar() {
         System.out.println("salvar");
         fornecedor = new Fornecedor(gerarCnpj(), gerarInscricaoEstadual(), gerarNome(), gerarEmail(), gerarTelefoneFixo());

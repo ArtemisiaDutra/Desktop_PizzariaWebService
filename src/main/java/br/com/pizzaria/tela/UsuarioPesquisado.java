@@ -5,12 +5,9 @@
  */
 package br.com.pizzaria.tela;
 
-import br.com.pizzaria.dao.ClienteDao;
-import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.dao.UsuarioDao;
 import br.com.pizzaria.dao.UsuarioDaoImpl;
-import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Usuario;
 import java.util.List;
 import javax.swing.JOptionPane;

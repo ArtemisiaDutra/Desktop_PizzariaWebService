@@ -36,13 +36,11 @@ public class Endereco implements Serializable {//Serializable é passagem de par
     @Column(nullable = false)
     private String estado;
 
-    
     private String complemento;
 
     @Column(nullable = false)
     private String cep;
 
-   
     private String observacao;
 
     public Long getId() {
@@ -52,11 +50,9 @@ public class Endereco implements Serializable {//Serializable é passagem de par
     public void setId(Long id) {
         this.id = id;
     }
-    // endereço para uma pessoa = ToOne
-    // Uma Pessoa pode ter va´rios endereços = ManyToOne
-    // não tem haver pai e filho - Apenas associação Pessoa e Endereço
+
     @ManyToOne
-    @JoinColumn(name = "id_pessoa")//chave estrangeira vai ficar na pessoa só´para visualizar esse @JoinColumn
+    @JoinColumn(name = "id_pessoa")//chave estrangeira vai ficar na pessoa sópara visualizar esse @JoinColumn
     private Pessoa pessoa;
 
     public Endereco() {

@@ -132,11 +132,12 @@ public class Login extends javax.swing.JFrame {
 
         if (usuario != null) {
             new Principal(usuario).setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bem vindo ao Gupy Sistemas");
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "E-mail ou Senha incorreta ");
         }
-        JOptionPane.showMessageDialog(null, "Bem vindo ao Gupy Sistemas");
+        
 
     }//GEN-LAST:event_btLogarActionPerformed
 

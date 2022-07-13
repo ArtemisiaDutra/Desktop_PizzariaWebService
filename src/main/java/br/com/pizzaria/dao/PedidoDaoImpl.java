@@ -34,13 +34,6 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDa
         return consulta.getResultList();
     }
 
-//    @Override
-//    public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException {
-//        Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.valorTotal >= :valor");
-//        consulta.setParameter("valor", valor);
-//
-//        return consulta.getResultList();
-//    }
     @Override
     public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor, Session sessao) throws HibernateException {
         Query<Pedido> consulta = sessao.createQuery("from Pedido p where p.valorTotal >= :valor");
@@ -48,5 +41,24 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long> implements PedidoDa
 
         return consulta.getResultList();
     }
+
+    @Override
+    public Pedido pesquisarPorTelefone(String telefone, Session sessao) throws HibernateException {
+        Query<Pedido> consulta = sessao.createQuery("from pedido p join fetch p.clientes where p.telefone = :tel");
+        consulta.setParameter("tel", telefone);
+        return consulta.getSingleResult();
+    }
+
+    @Override
+    public boolean verificarTelefoneCadastrado(String telefoneCadastrado, Session sessao) throws HibernateException {
+        Query<String> consulta = sessao.createQuery("select p.telefone from Pedido p where p.telefone  = :telCadastrado");
+        consulta.setParameter("telCadastrado", telefoneCadastrado);
+        String resultadoTel = consulta.uniqueResult();
+        return resultadoTel != null;
+    }
+
+
+
+
 
 }
